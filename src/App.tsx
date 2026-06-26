@@ -44,6 +44,11 @@ export default function App() {
     message: ''
   });
 
+  // Privacy Policy states
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [quotePrivacyAccepted, setQuotePrivacyAccepted] = useState(false);
+  const [contactPrivacyAccepted, setContactPrivacyAccepted] = useState(false);
+
   // Submitted items (persisted in localStorage for demo review)
   const [submissions, setSubmissions] = useState<Quote[]>([]);
   const [showAdminDrawer, setShowAdminDrawer] = useState(false);
@@ -123,6 +128,11 @@ export default function App() {
       return;
     }
 
+    if (!quotePrivacyAccepted) {
+      triggerToast('Παρακαλούμε αποδεχτείτε την Πολιτική Απορρήτου για να συνεχίσετε.', 'info');
+      return;
+    }
+
     const newSub: Quote = {
       id: 'sub-' + Date.now(),
       type: 'quote',
@@ -144,6 +154,7 @@ export default function App() {
       area: '',
       description: ''
     });
+    setQuotePrivacyAccepted(false);
     setSelectedMachine(null);
   };
 
@@ -152,6 +163,11 @@ export default function App() {
     e.preventDefault();
     if (!contactForm.name || !contactForm.email || !contactForm.subject || !contactForm.message) {
       triggerToast('Παρακαλούμε συμπληρώστε όλα τα απαιτούμενα πεδία.', 'info');
+      return;
+    }
+
+    if (!contactPrivacyAccepted) {
+      triggerToast('Παρακαλούμε αποδεχτείτε την Πολιτική Απορρήτου για να συνεχίσετε.', 'info');
       return;
     }
 
@@ -176,6 +192,7 @@ export default function App() {
       subject: '',
       message: ''
     });
+    setContactPrivacyAccepted(false);
   };
 
   // Add review handler
@@ -1285,6 +1302,28 @@ export default function App() {
                       ></textarea>
                     </div>
 
+                    <div className="flex items-start gap-2.5 pt-1 pb-2">
+                      <input 
+                        type="checkbox" 
+                        id="quote-privacy"
+                        required
+                        checked={quotePrivacyAccepted}
+                        onChange={(e) => setQuotePrivacyAccepted(e.target.checked)}
+                        className="mt-1 accent-[#F27D26] w-4 h-4 cursor-pointer shrink-0"
+                      />
+                      <label htmlFor="quote-privacy" className="text-xs text-gray-400 select-none cursor-pointer leading-relaxed">
+                        Έχω διαβάσει και αποδέχομαι την{" "}
+                        <button 
+                          type="button" 
+                          onClick={() => setIsPrivacyModalOpen(true)}
+                          className="text-[#F27D26] underline hover:text-[#ff8e3a] font-semibold"
+                        >
+                          Πολιτική Απορρήτου & Προστασίας Δεδομένων
+                        </button>{" "}
+                        της Thess-Skavo. *
+                      </label>
+                    </div>
+
                     <button
                       type="submit"
                       className="w-full py-4 bg-[#F27D26] hover:bg-[#ff8e3a] text-black font-extrabold text-xs uppercase tracking-widest rounded transition-all shadow-md shadow-[#F27D26]/15 flex items-center justify-center gap-2"
@@ -1344,6 +1383,28 @@ export default function App() {
                         onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                         className="w-full bg-[#1A1A1A] border border-white/5 rounded p-3 text-sm text-white focus:outline-none focus:border-[#F27D26]"
                       ></textarea>
+                    </div>
+
+                    <div className="flex items-start gap-2.5 pt-1 pb-2">
+                      <input 
+                        type="checkbox" 
+                        id="contact-privacy"
+                        required
+                        checked={contactPrivacyAccepted}
+                        onChange={(e) => setContactPrivacyAccepted(e.target.checked)}
+                        className="mt-1 accent-[#F27D26] w-4 h-4 cursor-pointer shrink-0"
+                      />
+                      <label htmlFor="contact-privacy" className="text-xs text-gray-400 select-none cursor-pointer leading-relaxed">
+                        Έχω διαβάσει και αποδέχομαι την{" "}
+                        <button 
+                          type="button" 
+                          onClick={() => setIsPrivacyModalOpen(true)}
+                          className="text-[#F27D26] underline hover:text-[#ff8e3a] font-semibold"
+                        >
+                          Πολιτική Απορρήτου & Προστασίας Δεδομένων
+                        </button>{" "}
+                        της Thess-Skavo. *
+                      </label>
                     </div>
 
                     <button
@@ -1463,12 +1524,131 @@ export default function App() {
 
         {/* Copyright Ribbon */}
         <div className="bg-black py-6 px-4 sm:px-8 border-t border-white/5 text-center text-xs text-gray-600">
-          <div className="max-w-7xl mx-auto text-center">
-            <p>&copy; 2019-2026 Skavo-Thess. All Rights Reserved. </p>
+          <div className="max-w-7xl mx-auto text-center space-y-2">
+            <p>&copy; 2019-2026 Skavo-Thess. All Rights Reserved.</p>
+            <p>
+              <button 
+                type="button"
+                onClick={() => setIsPrivacyModalOpen(true)}
+                className="text-gray-500 hover:text-[#F27D26] underline transition-colors"
+              >
+                Πολιτική Απορρήτου & Προστασίας Δεδομένων
+              </button>
+            </p>
           </div>
         </div>
 
       </footer>
+
+      {/* Privacy Policy Modal */}
+      {isPrivacyModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+          <div className="bg-[#121212] border border-white/10 rounded-lg max-w-2xl w-full flex flex-col max-h-[85vh] shadow-2xl relative animate-in fade-in zoom-in-95 duration-250">
+            
+            {/* Header */}
+            <div className="p-6 border-b border-white/5 flex justify-between items-center bg-[#181818] rounded-t-lg">
+              <div className="flex items-center gap-2.5">
+                <Shield className="w-5 h-5 text-[#F27D26]" />
+                <h3 className="text-sm sm:text-base font-black uppercase text-white tracking-wider">
+                  Πολιτική Απορρήτου & Προστασίας Δεδομένων
+                </h3>
+              </div>
+              <button 
+                onClick={() => setIsPrivacyModalOpen(false)}
+                className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-white/5 transition"
+                aria-label="Κλείσιμο"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Content (Scrollable) */}
+            <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-gray-300 text-xs sm:text-sm leading-relaxed scrollbar-thin scrollbar-thumb-white/10">
+              
+              <div className="space-y-2">
+                <p className="font-bold text-white text-base">Thess-Skavo</p>
+                <p>
+                  Η επιχείρηση Thess-Skavo (εφεξής «εμείς» ή «η επιχείρηση») σέβεται την ιδιωτικότητά σας και δεσμεύεται για την προστασία των προσωπικών δεδομένων των χρηστών που επισκέπτονται τον ιστότοπό μας και χρησιμοποιούν τη φόρμα επικοινωνίας μας.
+                </p>
+                <p>
+                  Η παρούσα Πολιτική Απορρήτου εξηγεί ποια δεδομένα συλλέγουμε, πώς τα χρησιμοποιούμε και πώς τα προστατεύουμε σύμφωνα με τον Γενικό Κανονισμό Προστασίας Δεδομένων (GDPR).
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-white/5 pt-4">
+                <h4 className="font-extrabold text-white uppercase text-xs tracking-wider text-[#F27D26]">1. Ποια Δεδομένα Συλλέγουμε</h4>
+                <p>Όταν συμπληρώνετε τη φόρμα επικοινωνίας ή προσφοράς στον ιστότοπό μας, συλλέγουμε μόνο τα απολύτως απαραίτητα στοιχεία για την εξυπηρέτησή σας:</p>
+                <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
+                  <li>Ονοματεπώνυμο ή Επωνυμία Εταιρείας.</li>
+                  <li>Τηλέφωνο Επικοινωνίας.</li>
+                  <li>Διεύθυνση Ηλεκτρονικού Ταχυδρομείου (E-mail).</li>
+                  <li>Πληροφορίες σχετικά με το έργο (Περιοχή έργου, είδος εργασίας, περιγραφή).</li>
+                </ul>
+              </div>
+
+              <div className="space-y-2 border-t border-white/5 pt-4">
+                <h4 className="font-extrabold text-white uppercase text-xs tracking-wider text-[#F27D26]">2. Σκοπός Επεξεργασίας των Δεδομένων</h4>
+                <p>Χρησιμοποιούμε τα δεδομένα που μας παρέχετε αποκλειστικά για τους εξής σκοπούς:</p>
+                <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
+                  <li>Για να επικοινωνήσουμε μαζί σας σχετικά με το αίτημά σας.</li>
+                  <li>Για να σας παρέχουμε οικονομική προσφορά για τις χωματουργικές/τεχνικές εργασίες που ζητήσατε.</li>
+                  <li>Για την καλύτερη οργάνωση και εκτέλεση του έργου, εφόσον συνεργαστούμε.</li>
+                </ul>
+                <p className="italic text-gray-400 bg-white/5 p-3 rounded border-l-2 border-[#F27D26]">
+                  <strong>Σημείωση:</strong> Δεν χρησιμοποιούμε τα στοιχεία σας για διαφημιστικούς σκοπούς (newsletters) εκτός αν μας δώσετε τη ρητή συγκατάθεσή σας, και ποτέ δεν τα πουλάμε ή τα παραχωρούμε σε τρίτους.
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-white/5 pt-4">
+                <h4 className="font-extrabold text-white uppercase text-xs tracking-wider text-[#F27D26]">3. Χρονικό Διάστημα Διατήρησης Δεδομένων</h4>
+                <p>
+                  Διατηρούμε τα προσωπικά σας δεδομένα μόνο για όσο χρονικό διάστημα απαιτείται για την εκπλήρωση των παραπάνω σκοπών (π.χ. μέχρι να ολοκληρωθεί η επικοινωνία ή το έργο) ή όπως ορίζεται από τη φορολογική και νομική νομοθεσία σε περίπτωση σύναψης συμφωνίας/έκδοσης τιμολογίων.
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-white/5 pt-4">
+                <h4 className="font-extrabold text-white uppercase text-xs tracking-wider text-[#F27D26]">4. Ασφάλεια Δεδομένων</h4>
+                <p>
+                  Λαμβάνουμε όλα τα απαραίτητα τεχνικά και οργανωτικά μέτρα (όπως χρήση πρωτοκόλλου κρυπτογράφησης SSL στον ιστότοπο) για να διασφαλίσουμε ότι τα δεδομένα σας είναι ασφαλή από μη εξουσιοδοτημένη πρόσβαση, απώλεια ή αλλοίωση.
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-white/5 pt-4">
+                <h4 className="font-extrabold text-white uppercase text-xs tracking-wider text-[#F27D26]">5. Τα Δικαιώματά σας (Σύμφωνα με το GDPR)</h4>
+                <p>Έχετε ανά πάσα στιγμή τα εξής δικαιώματα σχετικά με τα προσωπικά σας δεδομένα:</p>
+                <ul className="list-disc list-inside space-y-1 pl-2 text-gray-400">
+                  <li><strong>Δικαίωμα Πρόσβασης &amp; Διόρθωσης:</strong> Μπορείτε να μάθετε ποια στοιχεία σας διατηρούμε και να ζητήσετε τη διόρθωσή τους αν είναι ανακριβή.</li>
+                  <li><strong>Δικαίωμα Διαγραφής («Δικαίωμα στη λήθη»):</strong> Μπορείτε να ζητήσετε τη διαγραφή των δεδομένων σας από το αρχείο μας, εφόσον δεν εκκρεμεί νομική ή οικονομική υποχρέωση.</li>
+                  <li><strong>Δικαίωμα Περιορισμού/Εναντίωσης:</strong> Μπορείτε να ζητήσετε να σταματήσουμε την επεξεργασία των στοιχείων σας.</li>
+                </ul>
+                <p>
+                  Για να ασκήσετε οποιοδήποτε από τα δικαιώματά σας, μπορείτε να επικοινωνήσετε μαζί μας στο e-mail: <a href="mailto:info@skavo-thess.gr" className="text-[#F27D26] hover:underline font-mono">info@skavo-thess.gr</a>.
+                </p>
+              </div>
+
+              <div className="space-y-2 border-t border-white/5 pt-4">
+                <h4 className="font-extrabold text-white uppercase text-xs tracking-wider text-[#F27D26]">6. Αλλαγές στην Πολιτική Απορρήτου</h4>
+                <p>
+                  Διατηρούμε το δικαίωμα να ανανεώνουμε την παρούσα Πολιτική Απορρήτου όταν αυτό είναι απαραίτητο (π.χ. λόγω αλλαγών στη νομοθεσία). Σας προτείνουμε να διαβάζετε ανά διαστήματα αυτή τη σελίδα.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 sm:p-6 border-t border-white/5 bg-[#181818] flex justify-end rounded-b-lg">
+              <button
+                type="button"
+                onClick={() => setIsPrivacyModalOpen(false)}
+                className="px-5 py-2.5 bg-[#F27D26] hover:bg-[#ff8e3a] text-black text-xs font-black uppercase tracking-wider rounded transition"
+              >
+                ΚΛΕΙΣΙΜΟ
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
 
       {/* Sticky Call Button (Mobile & Desktop Speed Dial) */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3.5">
