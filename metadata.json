@@ -1,0 +1,6 @@
+{
+  "name": "Skavo-Thess",
+  "description": "Επαγγελματικές Χωματουργικές Εργασίες στη Θεσσαλονίκη. Άμεση εξυπηρέτηση, ιδιόκτητος σύγχρονος στόλος και έμπειρο προσωπικό για εκσκαφές, κατεδαφίσεις, διαμορφώσεις χώρων και δίκτυα.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
