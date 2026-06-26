@@ -345,7 +345,7 @@ export default function App() {
           {/* Mobile Menu Toggle */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="md:hidden p-2 text-gray-300 hover:text-[#F27D26] transition-colors"
+            className="md:hidden p-3 text-gray-300 hover:text-[#F27D26] transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -1198,17 +1198,17 @@ export default function App() {
               <div className="grid grid-cols-2 border-b border-white/10">
                 <button
                   onClick={() => setFormType('quote')}
-                  className={`py-4 text-xs font-black uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${formType === 'quote' ? 'bg-[#1A1A1A] text-[#F27D26] border-b-2 border-[#F27D26]' : 'text-gray-400 hover:text-white'}`}
+                  className={`py-4 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest transition-colors flex items-center justify-center gap-2 px-2 text-center ${formType === 'quote' ? 'bg-[#1A1A1A] text-[#F27D26] border-b-2 border-[#F27D26]' : 'text-gray-400 hover:text-white'}`}
                 >
-                  <FileText className="w-4 h-4" />
-                  ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ
+                  <FileText className="w-4 h-4 shrink-0" />
+                  <span>ΖΗΤΗΣΤΕ ΠΡΟΣΦΟΡΑ</span>
                 </button>
                 <button
                   onClick={() => setFormType('message')}
-                  className={`py-4 text-xs font-black uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${formType === 'message' ? 'bg-[#1A1A1A] text-[#F27D26] border-b-2 border-[#F27D26]' : 'text-gray-400 hover:text-white'}`}
+                  className={`py-4 text-[10px] sm:text-xs font-black uppercase tracking-wider sm:tracking-widest transition-colors flex items-center justify-center gap-2 px-2 text-center ${formType === 'message' ? 'bg-[#1A1A1A] text-[#F27D26] border-b-2 border-[#F27D26]' : 'text-gray-400 hover:text-white'}`}
                 >
-                  <Send className="w-4 h-4" />
-                  ΕΠΙΚΟΙΝΩΝΙΑ / EMAIL
+                  <Send className="w-4 h-4 shrink-0" />
+                  <span>ΕΠΙΚΟΙΝΩΝΙΑ / EMAIL</span>
                 </button>
               </div>
 
@@ -1382,7 +1382,7 @@ export default function App() {
         </div>
 
         {/* Overlay address info card over the map */}
-        <div className="absolute top-8 left-4 sm:left-12 z-10 max-w-sm bg-black/95 p-6 rounded border border-white/10 shadow-2xl backdrop-blur-md">
+        <div className="absolute top-8 left-4 right-4 sm:right-auto sm:left-12 z-10 max-w-sm bg-black/95 p-6 rounded border border-white/10 shadow-2xl backdrop-blur-md">
           <div className="space-y-3">
             <h4 className="text-[#F27D26] text-xs font-black uppercase tracking-wider flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
