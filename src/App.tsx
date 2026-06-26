@@ -276,7 +276,7 @@ export default function App() {
   const displayRating = averageRating.toFixed(1);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#F27D26] selection:text-black">
+    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-[#F27D26] selection:text-black overflow-x-hidden w-full max-w-full relative">
       
       {/* Dynamic Toast Notifications */}
       {toast && (
@@ -520,7 +520,7 @@ export default function App() {
       </section>
 
       {/* Welcome & Slogan Section */}
-      <section id="about-section" className="py-20 px-4 sm:px-8 bg-[#0D0D0D] border-t border-white/5 relative">
+      <section id="about-section" className="py-20 px-4 sm:px-8 bg-[#0D0D0D] border-t border-white/5 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-80 h-80 rounded-full bg-[#F27D26]/3 blur-[100px] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto">
@@ -603,7 +603,7 @@ export default function App() {
       </section>
 
       {/* Why Us Section */}
-      <section id="why-choose-us" className="py-20 px-4 sm:px-8 bg-[#0A0A0A] relative">
+      <section id="why-choose-us" className="py-20 px-4 sm:px-8 bg-[#0A0A0A] relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -678,7 +678,7 @@ export default function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services-section" className="py-20 px-4 sm:px-8 bg-[#0D0D0D] border-t border-white/5 relative">
+      <section id="services-section" className="py-20 px-4 sm:px-8 bg-[#0D0D0D] border-t border-white/5 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -873,7 +873,7 @@ export default function App() {
 
 
       {/* Testimonials / Google Reviews Section */}
-      <section id="reviews-section" className="py-20 px-4 sm:px-8 bg-[#0D0D0D] border-t border-white/5 relative">
+      <section id="reviews-section" className="py-20 px-4 sm:px-8 bg-[#0D0D0D] border-t border-white/5 relative overflow-hidden">
         <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-amber-600/3 blur-[100px] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto">
@@ -1112,7 +1112,7 @@ export default function App() {
       )}
 
       {/* Interactive Contact & Quote Form Section */}
-      <section id="contact-quote-section" className="py-20 px-4 sm:px-8 bg-[#0A0A0A] relative">
+      <section id="contact-quote-section" className="py-20 px-4 sm:px-8 bg-[#0A0A0A] relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
@@ -1366,8 +1366,8 @@ export default function App() {
       </section>
 
       {/* Embedded Location Map Section */}
-      <section id="map-section" className="relative h-[400px] border-t border-white/10 bg-[#0F0F0F]">
-        <div className="absolute inset-0 z-0">
+      <section id="map-section" className="relative h-auto md:h-[400px] border-t border-white/10 bg-[#0F0F0F] overflow-hidden flex flex-col">
+        <div className="w-full h-[320px] md:h-full md:absolute md:inset-0 z-0">
           {/* Iframe with Google Maps centered in Ano Peraia, Thessaloniki */}
           <iframe 
             src="https://maps.google.com/maps?q=Skavo-Thess,%20%CE%9A%CE%BF%CE%BB%CE%BF%CE%BA%CE%BF%CF%84%CF%81%CF%8E%CE%BD%CE%B7%20%CE%BA%CE%B1%CE%B9%20%CE%A0%CE%B1%CE%BC%CF%80%CE%BF%CF%85%CE%B4%CE%AC%CE%BA%CE%B7,%20%CE%A0%CE%B5%CF%81%CE%B1%CE%AF%CE%B1,%20%CE%98%CE%B5%CF%83%CF%83%CE%B1%CE%BB%CE%BF%CE%BD%CE%AF%CE%BA%CE%B7&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -1382,7 +1382,7 @@ export default function App() {
         </div>
 
         {/* Overlay address info card over the map */}
-        <div className="absolute top-8 left-4 right-4 sm:right-auto sm:left-12 z-10 max-w-sm bg-black/95 p-6 rounded border border-white/10 shadow-2xl backdrop-blur-md">
+        <div className="relative md:absolute md:top-8 md:left-12 z-10 w-full md:max-w-sm bg-black/95 p-6 border-b md:border md:rounded border-white/10 shadow-2xl backdrop-blur-md">
           <div className="space-y-3">
             <h4 className="text-[#F27D26] text-xs font-black uppercase tracking-wider flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -1409,7 +1409,7 @@ export default function App() {
       </section>
 
       {/* SEO & Regional Service Footer */}
-      <footer className="bg-[#050505] border-t border-white/10">
+      <footer className="bg-[#050505] border-t border-white/10 overflow-hidden">
 
         {/* Main Footer Links & Credentials */}
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1463,116 +1463,12 @@ export default function App() {
 
         {/* Copyright Ribbon */}
         <div className="bg-black py-6 px-4 sm:px-8 border-t border-white/5 text-center text-xs text-gray-600">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="max-w-7xl mx-auto text-center">
             <p>&copy; 2019-2026 Skavo-Thess. All Rights Reserved. </p>
-            <div className="flex gap-4 items-center">
-              <button 
-                onClick={() => setShowAdminDrawer(true)}
-                className="hover:text-[#F27D26] transition text-[11px] uppercase tracking-wider font-extrabold underline flex items-center gap-1.5"
-              >
-                <Users className="w-3.5 h-3.5" />
-                Διαχειριση Αιτηματων ({submissions.length})
-              </button>
-            </div>
           </div>
         </div>
 
       </footer>
-
-      {/* Admin Submissions Drawer (For demonstration and local persistence proof) */}
-      {showAdminDrawer && (
-        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-[#121212] border-l border-white/10 shadow-2xl p-6 sm:p-8 flex flex-col justify-between animate-in slide-in-from-right duration-300">
-          
-          <div className="space-y-6 overflow-y-auto flex-1">
-            <div className="flex justify-between items-center border-b border-white/5 pb-4">
-              <div>
-                <h3 className="text-lg font-black uppercase text-[#F27D26] flex items-center gap-2">
-                  <FileText className="w-5 h-5" />
-                  Εισερχομενα Αιτηματα
-                </h3>
-                <p className="text-[11px] text-gray-400">Τοπική προεπισκόπηση υποβολών από τις φόρμες (localStorage)</p>
-              </div>
-              <button 
-                onClick={() => setShowAdminDrawer(false)}
-                className="text-gray-400 hover:text-white p-1"
-                aria-label="Close panel"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            {submissions.length === 0 ? (
-              <div className="py-12 text-center text-gray-500 space-y-3">
-                <HelpCircle className="w-12 h-12 mx-auto opacity-30 text-gray-400" />
-                <p className="text-sm font-semibold">Δεν υπάρχουν ακόμη καταγεγραμμένα αιτήματα.</p>
-                <p className="text-xs">Συμπληρώστε τη Φόρμα Προσφοράς ή τη Φόρμα Επικοινωνίας για να δείτε τα αιτήματα να εμφανίζονται εδώ σε πραγματικό χρόνο!</p>
-              </div>
-            ) : (
-              <div className="space-y-4 pr-1">
-                {submissions.map((sub) => (
-                  <div key={sub.id} className="bg-[#1A1A1A] border border-white/5 p-4 rounded relative group">
-                    <button
-                      onClick={() => handleDeleteSubmission(sub.id)}
-                      className="absolute top-3 right-3 text-gray-500 hover:text-red-500 transition duration-150"
-                      title="Διαγραφή αιτήματος"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-
-                    <div className="space-y-2 text-xs">
-                      <div className="flex justify-between items-center pr-6">
-                        <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase ${sub.type === 'quote' ? 'bg-[#F27D26]/10 text-[#F27D26] border border-[#F27D26]/20' : 'bg-blue-600/10 text-blue-400 border border-blue-500/20'}`}>
-                          {sub.type === 'quote' ? 'Προσφορά' : 'Μήνυμα'}
-                        </span>
-                        <span className="text-gray-500 font-mono">{sub.date}</span>
-                      </div>
-
-                      <p className="font-extrabold text-sm text-white pt-1">{sub.name}</p>
-                      
-                      <div className="grid grid-cols-2 gap-2 border-t border-white/5 pt-2">
-                        <div>
-                          <p className="text-gray-500 text-[10px] uppercase font-bold tracking-wider">Επικοινωνία</p>
-                          <p className="text-gray-300 font-mono">{sub.phoneOrEmail}</p>
-                        </div>
-                        <div>
-                          <p className="text-gray-500 text-[10px] uppercase font-bold tracking-wider">
-                            {sub.type === 'quote' ? 'Περιοχή' : 'Θέμα'}
-                          </p>
-                          <p className="text-gray-300">{sub.areaOrSubject}</p>
-                        </div>
-                      </div>
-
-                      <div className="bg-black/40 p-3 rounded border border-white/5 mt-2">
-                        <p className="text-gray-500 text-[9px] uppercase font-bold tracking-wider mb-1">Περιγραφή / Σημειώσεις</p>
-                        <p className="text-gray-300 leading-relaxed whitespace-pre-line">{sub.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="border-t border-white/5 pt-4 mt-4 space-y-3">
-            <button
-              onClick={() => {
-                if (confirm('Είστε σίγουροι ότι θέλετε να διαγράψετε όλα τα αιτήματα;')) {
-                  saveSubmissions([]);
-                  triggerToast('Όλα τα αιτήματα διαγράφηκαν.', 'info');
-                }
-              }}
-              disabled={submissions.length === 0}
-              className="w-full py-2.5 border border-red-500/30 hover:bg-red-500/10 text-red-400 disabled:opacity-50 disabled:pointer-events-none text-xs font-black uppercase tracking-wider rounded transition"
-            >
-              ΕΚΚΑΘΑΡΙΣΗ ΟΛΩΝ
-            </button>
-            <p className="text-[10px] text-gray-500 text-center italic">
-              Τα δεδομένα αποθηκεύονται τοπικά στο πρόγραμμα περιήγησής σας.
-            </p>
-          </div>
-
-        </div>
-      )}
 
       {/* Sticky Call Button (Mobile & Desktop Speed Dial) */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3.5">
