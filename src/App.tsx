@@ -421,10 +421,10 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="relative min-h-[600px] lg:min-h-[680px] flex items-center justify-center py-8 md:py-20 px-4 sm:px-8 overflow-hidden">
+      <section id="hero" className="relative min-h-[600px] lg:min-h-[680px] flex items-center justify-center py-20 px-4 sm:px-8 overflow-hidden">
         
-        {/* Background Image with Dark Overlays (Desktop/Tablet only) */}
-        <div className="hidden md:block absolute inset-0 z-0">
+        {/* Background Image with Dark Overlays */}
+        <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
             alt="Excavator at construction site in Thessaloniki" 
@@ -438,23 +438,8 @@ export default function App() {
           <div className="absolute bottom-20 right-20 w-[500px] h-[500px] rounded-full bg-amber-600/5 blur-[150px] pointer-events-none"></div>
         </div>
 
-        {/* Ambient glows for mobile */}
-        <div className="md:hidden absolute inset-0 z-0 bg-[#0A0A0A]">
-          <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-[#F27D26]/5 blur-[120px] pointer-events-none"></div>
-          <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-amber-600/5 blur-[120px] pointer-events-none"></div>
-        </div>
-
         {/* Content Container */}
-        <div className="relative z-20 max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
-          
-          {/* Entire Hero Image displayed on mobile to avoid cropping */}
-          <div className="md:hidden w-full overflow-hidden rounded-lg border border-white/10 shadow-lg mt-4">
-            <img 
-              src={heroImage} 
-              alt="Excavator at construction site in Thessaloniki" 
-              className="w-full h-auto object-contain filter contrast-[1.05]"
-            />
-          </div>
+        <div className="relative z-20 max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Main Hero Header */}
           <div className="lg:col-span-8 space-y-6 text-left">
